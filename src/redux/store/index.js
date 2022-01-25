@@ -5,7 +5,8 @@ import { mainReducer } from '../reducers'
 // the initial state for the app is going to be an object,
 // just like the initial state for an individual component...
 export const initialState = {
-  count: 0,
+  count: 50,
+  loading: false,
   // count is just my example variable
 }
 

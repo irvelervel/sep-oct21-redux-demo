@@ -15,6 +15,15 @@ export const mainReducer = (state = initialState, action) => {
     // the type of an action is a mandatory property,
     // it will describe what the action wants to do
     // it will always be a string
+    case 'INCREASE_COUNTER': {
+      return {
+        // what is the new state of the application if we encounter
+        // an action of type 'INCREASE_COUNTER' ?
+        ...state,
+        // the ...state spread operator brings over count and loading
+        count: state.count + 10,
+      }
+    }
     default:
       // the default case doesn't change the state
       // this is for not breaking anything if an unknown action type
@@ -22,3 +31,6 @@ export const mainReducer = (state = initialState, action) => {
       return state
   }
 }
+
+// now that you understand that every action.type requires a reducer case,
+// you can understand why the reducer can be called a "finite-state machine"
