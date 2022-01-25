@@ -2,6 +2,7 @@ import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { decreaseCounterAction, increaseCounterAction } from './redux/actions'
 
 // mapStateToProps is a function returning an object
 // its purpose is to define WHICH properties of the redux store
@@ -22,11 +23,12 @@ const mapDispatchToProps = (dispatch) => {
     // mapDispatchToProps will give your components METHODS as props
     increaseCounter: () => {
       // when you call increaseCounter, you will dispatch an action
-      dispatch({
-        type: 'INCREASE_COUNTER',
-        // the type is a string, it's also the only mandatory property
-        // should describe what you want to do with this action
-      })
+      dispatch(increaseCounterAction())
+      // I'm still dispatching an object, but that object is now coming
+      // from the execution of an action creator
+    },
+    decreaseCounter: () => {
+      dispatch(decreaseCounterAction())
     },
   }
 }
@@ -36,13 +38,13 @@ const mapDispatchToProps = (dispatch) => {
 // mapStateToProps --> READ ONLY
 // mapDispatchToProps --> DISPATCHING ACTIONS --> CHANGING THE STATE
 
-function App({ count, increaseCounter }) {
+function App({ count, increaseCounter, decreaseCounter }) {
   return (
     <div className='App'>
       <header className='App-header'>
         <Button onClick={increaseCounter}>+</Button>
         <div>The count value is: {count}</div>
-        <Button>-</Button>
+        <Button onClick={decreaseCounter}>-</Button>
       </header>
     </div>
   )
